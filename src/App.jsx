@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Camera, MessageCircle, Upload, X, Send, Leaf, AlertCircle, CheckCircle, Sparkles, TrendingUp, Activity, Info, ChevronRight, Droplet, Sun, Wind } from 'lucide-react';
-import './index.css'
+import { Camera, MessageCircle, Upload, X, Send, Leaf, FlaskConical, AlertCircle, CheckCircle, Sparkles, TrendingUp, Activity, Info, ChevronRight, Droplet, Sun, Wind } from 'lucide-react';
 
 export default function PlantDiseaseApp() {
   const [activeTab, setActiveTab] = useState('detection');
   const [uploadedImage, setUploadedImage] = useState(null);
+  const [uploadedFile, setUploadedFile] = useState(null);
   const [diseaseResult, setDiseaseResult] = useState(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [error, setError] = useState(null);
   const [chatMessages, setChatMessages] = useState([
     { type: 'bot', text: 'Hello! I\'m your AI farming assistant. How can I help you today?', timestamp: new Date() }
   ]);
@@ -15,6 +16,9 @@ export default function PlantDiseaseApp() {
   const chatEndRef = useRef(null);
   const fileInputRef = useRef(null);
 
+  // Backend API URL - Change this to match your backend URL
+  const API_URL = 'http://localhost:5000';
+
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [chatMessages]);
@@ -22,6 +26,21 @@ export default function PlantDiseaseApp() {
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
+      // Validate file size (max 10MB)
+      if (file.size > 10 * 1024 * 1024) {
+        setError('File size must be less than 10MB');
+        return;
+      }
+
+      // Validate file type
+      if (!file.type.startsWith('image/')) {
+        setError('Please upload a valid image file');
+        return;
+      }
+
+      setError(null);
+      setUploadedFile(file);
+      
       const reader = new FileReader();
       reader.onload = (event) => {
         setUploadedImage(event.target.result);
@@ -31,39 +50,56 @@ export default function PlantDiseaseApp() {
     }
   };
 
-  const analyzeDisease = () => {
+  const analyzeDisease = async () => {
+    if (!uploadedFile) {
+      setError('Please upload an image first');
+      return;
+    }
+
     setIsAnalyzing(true);
-    setTimeout(() => {
-      setDiseaseResult({
-        disease: 'Late Blight',
-        scientificName: 'Phytophthora infestans',
-        confidence: 94.5,
-        severity: 'High',
-        affectedArea: '35%',
-        treatment: [
-          'Remove and destroy infected leaves immediately to prevent spread',
-          'Apply copper-based fungicide (Bordeaux mixture) every 7-10 days',
-          'Ensure proper spacing between plants for optimal air circulation',
-          'Avoid overhead watering; water at the base of plants during morning hours',
-          'Apply organic mulch to prevent soil splash and reduce humidity'
-        ],
-        prevention: [
-          'Plant resistant varieties when available',
-          'Maintain proper field sanitation',
-          'Monitor weather conditions for high humidity',
-          'Implement crop rotation annually'
-        ],
-        environmentalFactors: {
-          temperature: '18-22°C',
-          humidity: '85-90%',
-          rainfall: 'High'
-        }
+    setError(null);
+
+    try {
+      // Create form data
+      const formData = new FormData();
+      formData.append('image', uploadedFile);
+
+      // Call backend API
+      const response = await fetch(`${API_URL}/predict`, {
+        method: 'POST',
+        body: formData,
       });
+
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
+      // Transform backend response to match your UI structure
+      setDiseaseResult({
+        disease: data.disease,
+        confidence: parseFloat(data.confidence_score * 100).toFixed(1),
+        severity: data.severity || 'Medium',
+        treatment: data.treatment ? data.treatment.split('. ').filter(t => t.trim()) : ['Consult an agricultural expert'],
+        prevention: data.prevention ? data.prevention.split('. ').filter(p => p.trim()) : ['Follow standard practices'],
+        organicTreatment: data.organic_treatment,
+        recommended_insecticide_pesticide: data.recommended_insecticide_pesticide,
+      });
+
+    } catch (err) {
+      console.error('Error analyzing disease:', err);
+      setError(err.message || 'Failed to analyze image. Please ensure the backend server is running.');
+    } finally {
       setIsAnalyzing(false);
-    }, 2500);
+    }
   };
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (userMessage.trim()) {
       const newUserMessage = {
         type: 'user',
@@ -74,6 +110,7 @@ export default function PlantDiseaseApp() {
       setUserMessage('');
       setIsTyping(true);
       
+      // TODO: Replace with actual AI chatbot API call
       setTimeout(() => {
         const responses = [
           'Based on your query, I recommend checking soil pH levels. Most crops thrive in a pH range of 6.0-7.0. You can use a simple soil test kit available at agricultural stores.',
@@ -98,8 +135,8 @@ export default function PlantDiseaseApp() {
       {/* Animated Background */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-20 w-72 h-72 bg-green-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-72 h-72 bg-emerald-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-700"></div>
-        <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-teal-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-40 right-20 w-72 h-72 bg-emerald-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-teal-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
       </div>
 
       {/* Header */}
@@ -127,8 +164,8 @@ export default function PlantDiseaseApp() {
               <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-lg backdrop-blur-sm">
                 <Activity className="w-5 h-5 text-green-300" />
                 <div>
-                  <p className="text-xs text-green-200">Detection Rate</p>
-                  <p className="font-bold">99.2%</p>
+                  <p className="text-xs text-green-200">Model Accuracy</p>
+                  <p className="font-bold">94.5%</p>
                 </div>
               </div>
               <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-lg backdrop-blur-sm">
@@ -154,9 +191,6 @@ export default function PlantDiseaseApp() {
                 : 'text-white/70 hover:text-white hover:bg-white/5'
             }`}
           >
-            {activeTab === 'detection' && (
-              <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 opacity-0 group-hover:opacity-20 transition-opacity"></div>
-            )}
             <Camera className="w-5 h-5" />
             <span>Disease Detection</span>
           </button>
@@ -168,9 +202,6 @@ export default function PlantDiseaseApp() {
                 : 'text-white/70 hover:text-white hover:bg-white/5'
             }`}
           >
-            {activeTab === 'chatbot' && (
-              <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 opacity-0 group-hover:opacity-20 transition-opacity"></div>
-            )}
             <MessageCircle className="w-5 h-5" />
             <span>AI Assistant</span>
           </button>
@@ -194,6 +225,20 @@ export default function PlantDiseaseApp() {
               </div>
 
               <div className="p-8">
+                {/* Error Message */}
+                {error && (
+                  <div className="mb-6 bg-red-500/20 border-2 border-red-400 text-white p-4 rounded-xl flex items-center gap-3">
+                    <AlertCircle className="w-6 h-6 text-red-400 flex-shrink-0" />
+                    <div>
+                      <p className="font-bold">Error</p>
+                      <p className="text-sm text-red-200">{error}</p>
+                    </div>
+                    <button onClick={() => setError(null)} className="ml-auto">
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+                )}
+
                 {!uploadedImage ? (
                   <div 
                     onClick={() => fileInputRef.current?.click()}
@@ -223,7 +268,7 @@ export default function PlantDiseaseApp() {
                       </div>
                       <div className="flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-green-400" />
-                        <span>95%+ Accuracy</span>
+                        <span>94.5% Accuracy</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-green-400" />
@@ -245,7 +290,9 @@ export default function PlantDiseaseApp() {
                         <button
                           onClick={() => {
                             setUploadedImage(null);
+                            setUploadedFile(null);
                             setDiseaseResult(null);
+                            setError(null);
                           }}
                           className="absolute top-6 right-6 bg-red-500 hover:bg-red-600 text-white p-3 rounded-full transition-all shadow-lg hover:shadow-xl hover:scale-110"
                         >
@@ -290,7 +337,6 @@ export default function PlantDiseaseApp() {
                               <h3 className="text-3xl font-black text-white mb-2">
                                 {diseaseResult.disease}
                               </h3>
-                              <p className="text-red-200 text-lg italic mb-4">{diseaseResult.scientificName}</p>
                               <div className="flex flex-wrap gap-3">
                                 <span className="bg-red-900/50 text-red-100 px-4 py-2 rounded-full font-bold text-sm border border-red-400/50">
                                   Confidence: {diseaseResult.confidence}%
@@ -298,30 +344,8 @@ export default function PlantDiseaseApp() {
                                 <span className="bg-orange-900/50 text-orange-100 px-4 py-2 rounded-full font-bold text-sm border border-orange-400/50">
                                   Severity: {diseaseResult.severity}
                                 </span>
-                                <span className="bg-yellow-900/50 text-yellow-100 px-4 py-2 rounded-full font-bold text-sm border border-yellow-400/50">
-                                  Affected: {diseaseResult.affectedArea}
-                                </span>
                               </div>
                             </div>
-                          </div>
-                        </div>
-
-                        {/* Environmental Factors */}
-                        <div className="grid grid-cols-3 gap-4">
-                          <div className="bg-gradient-to-br from-orange-500/20 to-red-500/20 border border-orange-400/30 rounded-xl p-6 text-center backdrop-blur-sm">
-                            <Sun className="w-8 h-8 text-orange-400 mx-auto mb-3" />
-                            <p className="text-orange-200 text-sm mb-1">Temperature</p>
-                            <p className="text-white font-bold text-lg">{diseaseResult.environmentalFactors.temperature}</p>
-                          </div>
-                          <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-blue-400/30 rounded-xl p-6 text-center backdrop-blur-sm">
-                            <Droplet className="w-8 h-8 text-blue-400 mx-auto mb-3" />
-                            <p className="text-blue-200 text-sm mb-1">Humidity</p>
-                            <p className="text-white font-bold text-lg">{diseaseResult.environmentalFactors.humidity}</p>
-                          </div>
-                          <div className="bg-gradient-to-br from-purple-500/20 to-indigo-500/20 border border-purple-400/30 rounded-xl p-6 text-center backdrop-blur-sm">
-                            <Wind className="w-8 h-8 text-purple-400 mx-auto mb-3" />
-                            <p className="text-purple-200 text-sm mb-1">Rainfall</p>
-                            <p className="text-white font-bold text-lg">{diseaseResult.environmentalFactors.rainfall}</p>
                           </div>
                         </div>
 
@@ -363,10 +387,35 @@ export default function PlantDiseaseApp() {
                           </div>
                         </div>
 
+                        {/* Organic Treatment */}
+                        {diseaseResult.organicTreatment && diseaseResult.organicTreatment !== 'Not available' && (
+                          <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-purple-400/30 rounded-2xl p-8 backdrop-blur-sm">
+                            <h4 className="text-2xl font-black text-white mb-4 flex items-center gap-3">
+                              <Leaf className="w-6 h-6 text-purple-400" />
+                              Organic Treatment Options
+                            </h4>
+                            <p className="text-white text-lg leading-relaxed">{diseaseResult.organicTreatment}</p>
+                          </div>
+                        )}
+
+                        {/* Insecticide Pesticide recommendation */}
+                        {diseaseResult.recommended_insecticide_pesticide && diseaseResult.recommended_insecticide_pesticide !== 'Not available' && (
+                          <div className="bg-gradient-to-br from-pink-500/30 to-pink-500/60 border border-pink-400 rounded-2xl p-8 backdrop-blur-sm">
+                            <h4 className="text-2xl font-black text-white mb-4 flex items-center gap-3">
+                              <FlaskConical className="w-6 h-6 text-pink-300" />
+                              Recommended Insecticide/Pesticide
+                            </h4>
+                            <p className="text-white text-lg leading-relaxed">{diseaseResult.recommended_insecticide_pesticide}</p>
+                          </div>
+                        )}
+
+
                         <button
                           onClick={() => {
                             setUploadedImage(null);
+                            setUploadedFile(null);
                             setDiseaseResult(null);
+                            setError(null);
                           }}
                           className="w-full bg-white/10 hover:bg-white/20 text-white py-4 rounded-2xl font-bold text-lg transition-all border border-white/20 hover:border-white/40"
                         >
@@ -404,7 +453,7 @@ export default function PlantDiseaseApp() {
                 {chatMessages.map((message, index) => (
                   <div
                     key={index}
-                    className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`}
+                    className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
                       className={`max-w-md lg:max-w-lg px-6 py-4 rounded-2xl shadow-lg ${
@@ -425,8 +474,8 @@ export default function PlantDiseaseApp() {
                     <div className="bg-white/90 text-gray-800 px-6 py-4 rounded-2xl rounded-bl-none shadow-lg backdrop-blur-sm border border-white/20">
                       <div className="flex gap-2">
                         <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-100"></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-200"></div>
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                       </div>
                     </div>
                   </div>

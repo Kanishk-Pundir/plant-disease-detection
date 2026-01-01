@@ -1,0 +1,306 @@
+{
+  "Apple___Apple_scab": {
+    "name": "Apple Scab",
+    "severity": "high",
+    "treatment": "Remove infected leaves and fruits. Apply fungicides during early leaf and fruit development.",
+    "prevention": "Plant resistant varieties, remove fallen leaves, ensure proper pruning.",
+    "organic_treatment": "Sulfur fungicide, neem oil.",
+    "recommended_insecticide_pesticide": "Captan, Mancozeb, Myclobutanil"
+  },
+  "Apple___Black_rot": {
+    "name": "Black Rot",
+    "severity": "high",
+    "treatment": "Prune infected branches and remove mummified fruits. Apply fungicides during bloom.",
+    "prevention": "Orchard sanitation and stress reduction.",
+    "organic_treatment": "Copper fungicides.",
+    "recommended_insecticide_pesticide": "Thiophanate-methyl, Mancozeb"
+  },
+  "Apple___Cedar_apple_rust": {
+    "name": "Cedar Apple Rust",
+    "severity": "medium",
+    "treatment": "Apply fungicides at early leaf emergence.",
+    "prevention": "Remove nearby junipers, plant resistant cultivars.",
+    "organic_treatment": "Neem oil.",
+    "recommended_insecticide_pesticide": "Myclobutanil, Propiconazole"
+  },
+  "Apple___healthy": {
+    "name": "Healthy Crop",
+    "severity": "none",
+    "treatment": "No treatment required.",
+    "prevention": "Routine monitoring and balanced nutrition.",
+    "organic_treatment": "Not applicable.",
+    "recommended_insecticide_pesticide": "Not required"
+  },
+  "Blueberry___healthy": {
+    "name": "Healthy Crop",
+    "severity": "none",
+    "treatment": "No treatment required.",
+    "prevention": "Maintain soil pH and proper pruning.",
+    "organic_treatment": "Not applicable.",
+    "recommended_insecticide_pesticide": "Not required"
+  },
+  "Cherry_(including_sour)___Powdery_mildew": {
+    "name": "Powdery Mildew",
+    "severity": "medium",
+    "treatment": "Apply fungicides at first sign of disease.",
+    "prevention": "Improve air circulation, avoid excess nitrogen.",
+    "organic_treatment": "Sulfur, neem oil.",
+    "recommended_insecticide_pesticide": "Sulfur, Hexaconazole"
+  },
+  "Cherry_(including_sour)___healthy": {
+    "name": "Healthy Crop",
+    "severity": "none",
+    "treatment": "No treatment required.",
+    "prevention": "Pruning and proper irrigation.",
+    "organic_treatment": "Not applicable.",
+    "recommended_insecticide_pesticide": "Not required"
+  },
+  "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot": {
+    "name": "Gray Leaf Spot",
+    "severity": "high",
+    "treatment": "Apply fungicides when symptoms appear.",
+    "prevention": "Crop rotation and residue management.",
+    "organic_treatment": "Trichoderma biofungicide.",
+    "recommended_insecticide_pesticide": "Azoxystrobin, Propiconazole"
+  },
+  "Corn_(maize)___Common_rust_": {
+    "name": "Common Rust",
+    "severity": "medium",
+    "treatment": "Apply fungicides if infection is severe.",
+    "prevention": "Use resistant hybrids.",
+    "organic_treatment": "Neem oil.",
+    "recommended_insecticide_pesticide": "Mancozeb, Propiconazole"
+  },
+  "Corn_(maize)___Northern_Leaf_Blight": {
+    "name": "Northern Leaf Blight",
+    "severity": "high",
+    "treatment": "Apply fungicides during early disease stage.",
+    "prevention": "Crop rotation and resistant varieties.",
+    "organic_treatment": "Trichoderma.",
+    "recommended_insecticide_pesticide": "Tebuconazole, Pyraclostrobin"
+  },
+  "Corn_(maize)___healthy": {
+    "name": "Healthy Crop",
+    "severity": "none",
+    "treatment": "No treatment required.",
+    "prevention": "Field scouting and nutrient management.",
+    "organic_treatment": "Not applicable.",
+    "recommended_insecticide_pesticide": "Not required"
+  },
+  "Grape___Black_rot": {
+    "name": "Black Rot",
+    "severity": "high",
+    "treatment": "Apply fungicides during flowering and fruit development.",
+    "prevention": "Remove infected berries, improve air flow.",
+    "organic_treatment": "Copper fungicide.",
+    "recommended_insecticide_pesticide": "Mancozeb, Myclobutanil"
+  },
+  "Grape___Esca_(Black_Measles)": {
+    "name": "Esca (Black Measles)",
+    "severity": "high",
+    "treatment": "Remove infected vines; no curative chemical treatment.",
+    "prevention": "Protect pruning wounds, avoid vine stress.",
+    "organic_treatment": "Biological wound protectants.",
+    "recommended_insecticide_pesticide": "No effective chemical control"
+  },
+  "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)": {
+    "name": "Leaf Blight",
+    "severity": "medium",
+    "treatment": "Apply fungicides at early stage.",
+    "prevention": "Vineyard sanitation.",
+    "organic_treatment": "Neem oil.",
+    "recommended_insecticide_pesticide": "Chlorothalonil, Mancozeb"
+  },
+  "Grape___healthy": {
+    "name": "Healthy Crop",
+    "severity": "none",
+    "treatment": "No treatment required.",
+    "prevention": "Routine vineyard care.",
+    "organic_treatment": "Not applicable.",
+    "recommended_insecticide_pesticide": "Not required"
+  },
+  "Orange___Haunglongbing_(Citrus_greening)": {
+    "name": "Citrus Greening",
+    "severity": "very high",
+    "treatment": "Remove infected trees and control insect vectors.",
+    "prevention": "Use disease-free planting material.",
+    "organic_treatment": "Neem oil for psyllid control.",
+    "recommended_insecticide_pesticide": "Imidacloprid, Thiamethoxam"
+  },
+  "Peach___Bacterial_spot": {
+    "name": "Bacterial Spot",
+    "severity": "high",
+    "treatment": "Apply copper sprays during dormancy.",
+    "prevention": "Avoid overhead irrigation, use resistant varieties.",
+    "organic_treatment": "Copper-based sprays.",
+    "recommended_insecticide_pesticide": "Copper oxychloride"
+  },
+  "Peach___healthy": {
+    "name": "Healthy Crop",
+    "severity": "none",
+    "treatment": "No treatment required.",
+    "prevention": "Pruning and nutrient management.",
+    "organic_treatment": "Not applicable.",
+    "recommended_insecticide_pesticide": "Not required"
+  },
+  "Pepper,_bell___Bacterial_spot": {
+    "name": "Bacterial Spot",
+    "severity": "high",
+    "treatment": "Remove infected plants and apply copper sprays.",
+    "prevention": "Use certified seeds and avoid leaf wetness.",
+    "organic_treatment": "Neem oil and copper soap.",
+    "recommended_insecticide_pesticide": "Copper hydroxide"
+  },
+  "Pepper,_bell___healthy": {
+    "name": "Healthy Crop",
+    "severity": "none",
+    "treatment": "No treatment required.",
+    "prevention": "Balanced fertilization and monitoring.",
+    "organic_treatment": "Not applicable.",
+    "recommended_insecticide_pesticide": "Not required"
+  },
+  "Potato___Early_blight": {
+    "name": "Early Blight",
+    "severity": "medium",
+    "treatment": "Apply fungicides and remove infected foliage.",
+    "prevention": "Crop rotation and mulching.",
+    "organic_treatment": "Copper fungicide.",
+    "recommended_insecticide_pesticide": "Mancozeb, Chlorothalonil"
+  },
+  "Potato___Late_blight": {
+    "name": "Late Blight",
+    "severity": "very high",
+    "treatment": "Immediate fungicide application.",
+    "prevention": "Avoid overhead irrigation and use resistant varieties.",
+    "organic_treatment": "Copper sprays.",
+    "recommended_insecticide_pesticide": "Metalaxyl, Cymoxanil"
+  },
+  "Potato___healthy": {
+    "name": "Healthy Crop",
+    "severity": "none",
+    "treatment": "No treatment required.",
+    "prevention": "Soil health and monitoring.",
+    "organic_treatment": "Not applicable.",
+    "recommended_insecticide_pesticide": "Not required"
+  },
+  "Raspberry___healthy": {
+    "name": "Healthy Crop",
+    "severity": "none",
+    "treatment": "No treatment required.",
+    "prevention": "Pruning and spacing.",
+    "organic_treatment": "Not applicable.",
+    "recommended_insecticide_pesticide": "Not required"
+  },
+  "Soybean___healthy": {
+    "name": "Healthy Crop",
+    "severity": "none",
+    "treatment": "No treatment required.",
+    "prevention": "Crop rotation and soil fertility.",
+    "organic_treatment": "Not applicable.",
+    "recommended_insecticide_pesticide": "Not required"
+  },
+  "Squash___Powdery_mildew": {
+    "name": "Powdery Mildew",
+    "severity": "medium",
+    "treatment": "Apply fungicides at early symptoms.",
+    "prevention": "Improve air circulation.",
+    "organic_treatment": "Milk spray, neem oil.",
+    "recommended_insecticide_pesticide": "Sulfur, Hexaconazole"
+  },
+  "Strawberry___Leaf_scorch": {
+    "name": "Leaf Scorch",
+    "severity": "medium",
+    "treatment": "Remove infected leaves and apply fungicides.",
+    "prevention": "Avoid overhead irrigation.",
+    "organic_treatment": "Neem oil.",
+    "recommended_insecticide_pesticide": "Captan"
+  },
+  "Strawberry___healthy": {
+    "name": "Healthy Crop",
+    "severity": "none",
+    "treatment": "No treatment required.",
+    "prevention": "Mulching and proper irrigation.",
+    "organic_treatment": "Not applicable.",
+    "recommended_insecticide_pesticide": "Not required"
+  },
+  "Tomato___Bacterial_spot": {
+    "name": "Bacterial Spot",
+    "severity": "high",
+    "treatment": "Remove infected leaves and apply copper sprays.",
+    "prevention": "Use certified seeds and avoid wet foliage.",
+    "organic_treatment": "Neem oil, copper soap.",
+    "recommended_insecticide_pesticide": "Copper hydroxide"
+  },
+  "Tomato___Early_blight": {
+    "name": "Early Blight",
+    "severity": "medium",
+    "treatment": "Apply fungicides and remove affected leaves.",
+    "prevention": "Crop rotation and mulching.",
+    "organic_treatment": "Baking soda spray.",
+    "recommended_insecticide_pesticide": "Mancozeb, Chlorothalonil"
+  },
+  "Tomato___Late_blight": {
+    "name": "Late Blight",
+    "severity": "very high",
+    "treatment": "Immediate fungicide application.",
+    "prevention": "Avoid overhead watering.",
+    "organic_treatment": "Copper fungicides.",
+    "recommended_insecticide_pesticide": "Metalaxyl, Cymoxanil"
+  },
+  "Tomato___Leaf_Mold": {
+    "name": "Leaf Mold",
+    "severity": "medium",
+    "treatment": "Apply fungicides and improve ventilation.",
+    "prevention": "Reduce humidity.",
+    "organic_treatment": "Neem oil.",
+    "recommended_insecticide_pesticide": "Chlorothalonil"
+  },
+  "Tomato___Septoria_leaf_spot": {
+    "name": "Septoria Leaf Spot",
+    "severity": "medium",
+    "treatment": "Remove infected leaves and apply fungicides.",
+    "prevention": "Avoid wet foliage.",
+    "organic_treatment": "Copper fungicide.",
+    "recommended_insecticide_pesticide": "Mancozeb"
+  },
+  "Tomato___Spider_mites Two-spotted_spider_mite": {
+    "name": "Spider Mites",
+    "severity": "medium",
+    "treatment": "Apply miticides or insecticidal soap.",
+    "prevention": "Maintain humidity and avoid plant stress.",
+    "organic_treatment": "Neem oil.",
+    "recommended_insecticide_pesticide": "Abamectin"
+  },
+  "Tomato___Target_Spot": {
+    "name": "Target Spot",
+    "severity": "medium",
+    "treatment": "Apply fungicides early.",
+    "prevention": "Remove crop residue.",
+    "organic_treatment": "Copper fungicide.",
+    "recommended_insecticide_pesticide": "Chlorothalonil"
+  },
+  "Tomato___Tomato_Yellow_Leaf_Curl_Virus": {
+    "name": "Yellow Leaf Curl Virus",
+    "severity": "very high",
+    "treatment": "Remove infected plants and control vectors.",
+    "prevention": "Whitefly management.",
+    "organic_treatment": "Neem oil.",
+    "recommended_insecticide_pesticide": "Imidacloprid"
+  },
+  "Tomato___Tomato_mosaic_virus": {
+    "name": "Tomato Mosaic Virus",
+    "severity": "high",
+    "treatment": "Remove infected plants.",
+    "prevention": "Disinfect tools and avoid handling when wet.",
+    "organic_treatment": "No effective organic cure.",
+    "recommended_insecticide_pesticide": "No chemical control"
+  },
+  "Tomato___healthy": {
+    "name": "Healthy Crop",
+    "severity": "none",
+    "treatment": "No treatment required.",
+    "prevention": "Good agricultural practices.",
+    "organic_treatment": "Not applicable.",
+    "recommended_insecticide_pesticide": "Not required"
+  }
+}
