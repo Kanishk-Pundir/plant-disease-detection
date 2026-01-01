@@ -7,6 +7,13 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+#virtual environment
+venv/
+__pycache__/
+*.pyc
+.env
+
+
 dataset/raw/
 *.jpg
 *.png
