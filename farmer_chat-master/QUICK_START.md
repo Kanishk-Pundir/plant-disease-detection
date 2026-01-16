@@ -19,7 +19,7 @@ pip install -r requirements.txt
 
 # Run the server
 python app.py
-# Server will run on http://localhost:5000
+# Server will run on http://localhost:5002
 ```
 
 ### Step 3: Start the Frontend
@@ -109,7 +109,7 @@ Edit the backend `app.py` to modify:
 - Verify CSS Module syntax
 
 ### Backend Connection Error?
-- Ensure backend is running on `http://localhost:5000`
+- Ensure backend is running on `http://localhost:5002`
 - Check CORS is enabled in Flask
 - Verify network connectivity
 

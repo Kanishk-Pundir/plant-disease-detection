@@ -13,6 +13,10 @@ __pycache__/
 *.pyc
 .env
 
+farmer_chat-master/
+backend/__pycache__/
+backend/*.pyc
+backend/chatbot_env/
 
 dataset/raw/
 *.jpg
@@ -22,6 +26,42 @@ node_modules
 dist
 dist-ssr
 *.local
+
+# Environment variables
+/farmer_chat-master/
+.env
+.env.local
+.env.*.local
+
+# Node modules
+farmer_chat-master/
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python
+farmer_chat-master/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+instance/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
 
 # Editor directories and files
 .vscode/*
