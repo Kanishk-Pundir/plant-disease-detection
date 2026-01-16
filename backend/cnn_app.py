@@ -66,7 +66,7 @@ DISEASE_INFO_PATH = os.path.join(BASE_DIR, 'backend', 'disease_info.json')
 
 if os.path.exists(DISEASE_INFO_PATH):
     print("Loading disease information...")
-    with open(DISEASE_INFO_PATH, 'r') as f:
+    with open(DISEASE_INFO_PATH, 'r',encoding='utf-8') as f:
         disease_info = json.load(f)
     print(f"✓ Loaded information for {len(disease_info)} diseases")
 else:
@@ -109,6 +109,21 @@ def home():
 @app.route('/predict', methods=['POST'])
 def predict_disease():
     try:
+        language = request.form.get('language', 'en')
+        
+        print(f"\n=== DEBUG INFO ===")
+        print(f"Received language parameter: '{language}'")
+        print(f"Form data keys: {list(request.form.keys())}")
+        print(f"==================\n")
+        
+
+
+        # Validate language
+        supported_languages = ['en', 'hi', 'kn', 'te', 'ta', 'ml', 'mr', 'bn', 'gu']
+        if language not in supported_languages:
+            language = 'en'  # Fallback to English
+        
+        # ... rest of your existing code for image processing ...
         # Check if image is in request
         if 'image' not in request.files:
             return jsonify({'error': 'No image provided'}), 400
@@ -146,7 +161,17 @@ def predict_disease():
         
         # Get disease information
         if disease_key in disease_info:
-            disease_data = disease_info[disease_key]
+            disease_translations = disease_info[disease_key]
+            if language in disease_translations:
+                disease_data = disease_translations[language]
+            else:
+        # Fallback to English if translation not available
+                disease_data = disease_translations.get('en', {
+                    'name': disease_key.replace('___', ' - ').replace('_', ' '),
+                    'treatment': 'Translation not available. Consult agricultural expert.',
+                    'prevention': 'Standard practices recommended.',
+                    'severity': 'unknown'
+                })
         else:
             # Default response if disease info not found
             disease_data = {
