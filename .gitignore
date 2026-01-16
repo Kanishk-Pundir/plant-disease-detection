@@ -33,6 +33,13 @@ dist-ssr
 .env.local
 .env.*.local
 
+
+venv/
+env/
+chatbot_env/
+*/chatbot_env/
+*/venv/
+
 # Node modules
 farmer_chat-master/
 node_modules/
