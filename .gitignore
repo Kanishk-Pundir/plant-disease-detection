@@ -33,7 +33,29 @@ dist-ssr
 .env.local
 .env.*.local
 
+/Expert_Recommendations-main
+node_modules/
+dist/
+__pycache__/
+*.pyc
+venv/
+.env
+.vite/
+.DS_Store
+Thumbs.db
 
+
+/Govt-Scheme-Loans-Frontend-frontend-integration
+node_modules/
+dist/
+.env
+.DS_Store
+Thumbs.db
+*/venv/
+
+
+
+/farmer_chat-master/
 venv/
 env/
 chatbot_env/

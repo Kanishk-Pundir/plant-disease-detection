@@ -201,6 +201,27 @@ export default function PlantDiseaseApp() {
         </select>
       </div>
 
+      <a
+  href="http://localhost:5184"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-block bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-6 py-3 rounded-xl font-bold shadow-lg hover:scale-105 transition-all z-50 relative"
+>
+  🌾 Expert Recommendations
+</a>
+
+
+<a
+  href="http://localhost:5194"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-block bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-6 py-3 rounded-xl font-bold shadow-lg hover:scale-105 transition-all z-50 relative"
+>
+  🏦📝 Government Schemes and Loans
+</a>
+
+
+
       {/* Tab Navigation */}
       <div className="container mx-auto px-4 py-8 relative">
         <div className="bg-white/10 backdrop-blur-xl rounded-2xl shadow-2xl p-2 flex gap-2 max-w-lg mx-auto border border-white/20">
